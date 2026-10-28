@@ -10,4 +10,4 @@ export const TOPICS: { id: TopicId; label: string; emoji: string; desc: string; 
   { id: "cotidiano", label: "Cotidiano", emoji: "🏡", desc: "Rotina, família, hobbies", prompt: "everyday life: routine, family, hobbies, weekend plans", greeting: "Hey! 🏡 Let's chat about everyday life. What did you do last weekend?" },
 ];
 
-export const topicById = (id: string) => TOPICS.find((t) => t.id === id) ?? TOPICS[0];
+export const topicById = (id: string) => TOPICS.find((t) => t.id === id) ?? TOPICS[0]!;

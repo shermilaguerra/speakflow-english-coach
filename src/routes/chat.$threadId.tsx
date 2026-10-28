@@ -75,7 +75,9 @@ function ChatWindow({ threadId, topic, initial }: { threadId: string; topic: str
     inputRef.current?.focus();
   }, [messages, busy, threadId]);
 
-  useEffect(() => endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" }), [messages, status]);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, status]);
 
   const send = () => {
     const text = input.trim();

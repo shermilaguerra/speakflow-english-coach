@@ -13,7 +13,9 @@ export type PhraseDraft = Partial<Omit<Phrase, "id" | "createdAt">> & { id?: str
 
 export function PhraseDialog({ draft, onClose }: { draft: PhraseDraft | null; onClose: () => void }) {
   const [f, setF] = useState<PhraseDraft>({});
-  useEffect(() => setF(draft ?? {}), [draft]);
+  useEffect(() => {
+    setF(draft ?? {});
+  }, [draft]);
   const set = (k: keyof PhraseDraft) => (e: { target: { value: string } }) => setF((x) => ({ ...x, [k]: e.target.value }));
 
   const submit = () => {

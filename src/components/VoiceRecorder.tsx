@@ -13,7 +13,7 @@ export function VoiceRecorder({ onText, disabled }: { onText: (t: string) => voi
   const chunks = useRef<Blob[]>([]);
 
   useEffect(() => {
-    if (state !== "recording") return;
+    if (state !== "recording") return undefined;
     const t = setInterval(() => setSecs((s) => (s >= 59 ? (rec.current?.stop(), s) : s + 1)), 1000);
     return () => clearInterval(t);
   }, [state]);

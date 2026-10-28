@@ -23,7 +23,8 @@ function Index() {
     const t = createThread(id, topicById(id).greeting);
     navigate({ to: "/chat/$threadId", params: { threadId: t.id } });
   };
-  const [free, ...topics] = TOPICS;
+  const free = TOPICS[0]!;
+  const topics = TOPICS.slice(1);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 md:px-8 md:py-12">
