@@ -19,8 +19,10 @@ export function VoiceRecorder({ onText, disabled }: { onText: (t: string) => voi
   }, [state]);
 
   const start = async () => {
-    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined")
-      return toast.error("Seu navegador não suporta gravação de áudio.");
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") {
+      toast.error("Seu navegador não suporta gravação de áudio.");
+      return;
+    }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mime = ["audio/webm", "audio/mp4", "audio/ogg"].find((m) => MediaRecorder.isTypeSupported(m)) ?? "";
@@ -32,7 +34,8 @@ export function VoiceRecorder({ onText, disabled }: { onText: (t: string) => voi
         const blob = new Blob(chunks.current, { type: r.mimeType || "audio/webm" });
         if (blob.size < 1000) {
           setState("idle");
-          return toast.error("Gravação muito curta. Tente de novo.");
+          toast.error("Gravação muito curta. Tente de novo.");
+          return;
         }
         setState("transcribing");
         try {

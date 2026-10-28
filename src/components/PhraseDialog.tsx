@@ -19,7 +19,10 @@ export function PhraseDialog({ draft, onClose }: { draft: PhraseDraft | null; on
   const set = (k: keyof PhraseDraft) => (e: { target: { value: string } }) => setF((x) => ({ ...x, [k]: e.target.value }));
 
   const submit = () => {
-    if (!f.learned?.trim()) return toast.error("Preencha a frase aprendida.");
+    if (!f.learned?.trim()) {
+      toast.error("Preencha a frase aprendida.");
+      return;
+    }
     const data = {
       original: f.original?.trim() ?? "",
       learned: f.learned.trim(),

@@ -44,7 +44,10 @@ function textOf(m: UIMessage) {
 }
 
 function speak(text: string) {
-  if (!("speechSynthesis" in window)) return toast.error("Seu navegador não suporta leitura em voz alta.");
+  if (!("speechSynthesis" in window)) {
+    toast.error("Seu navegador não suporta leitura em voz alta.");
+    return;
+  }
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text.replace(/[*_#`]/g, ""));
   u.lang = "en-US";
